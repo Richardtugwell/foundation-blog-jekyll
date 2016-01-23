@@ -1,0 +1,126 @@
+<div class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      <h1>
+        <a href="{{ site.baseurl }}">
+          {{ site.title }}
+        </a>
+      </h1>
+      <p class="lead">{{ site.description }}</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}">Home</a>
+
+      {% comment %}
+        The code below dynamically generates a sidebar nav of pages with
+        `layout: page` in the front-matter. See readme for usage.
+      {% endcomment %}
+
+      {% assign pages_list = site.pages %}
+      {% for node in pages_list %}
+        {% if node.title != null %}
+          {% if node.layout == "page" %}
+            <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
+            <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
+            <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
+            <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
+            <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
+            <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
+            <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
+            <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
+            <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
+            <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+<!--    <input type="checkbox" name="nav" id="main-nav-check"/>
+    <div id="menu">
+      <label for="main-nav-check" class="toggle" onclick="" title="Close">&times;</label>
+      <ul>
+        <li><a href="http://fofwebdesign.co.uk/">Focus on Function</a> <label for="fof" class="toggle-sub" onclick="">&#9658;</label>
+          <input type="checkbox" name="nav" id="fof" class="sub-nav-check"/>
+          <ul id="fof-sub" class="sub-nav">
+            <li class="sub-heading">Focus on Function <label for="fof" class="toggle" onclick="" title="Back">&#9658;</label></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Help: Videos &amp; Guides</a></li>
+            <li><a href="#">Portfolio</a> <label for="fof-portfolio" class="toggle-sub" onclick="">&#9658;</label>
+              <input type="checkbox" name="nav" id="fof-portfolio" class="sub-nav-check"/>
+              <ul id="fof-portfolio-sub" class="sub-nav">
+                <li class="sub-heading">Portfolio <label for="fof-portfolio" class="toggle" onclick="" title="Back">&#9658;</label></li>
+                <li><a href="#">Graphics &amp; Artwork</a> <label for="fof-portfolio-graphics" class="toggle-sub" onclick="">&#9658;</label>
+                  <input type="checkbox" name="nav" id="fof-portfolio-graphics" class="sub-nav-check"/>
+                  <ul id="fof-portfolio-graphics-sub" class="sub-nav">
+                    <li class="sub-heading">Graphics &amp; Artwork <label for="fof-portfolio-graphics" class="toggle" onclick="" title="Back">&#9658;</label></li>
+                    <li><a href="#">Artwork</a> <label for="fof-portfolio-graphics-art" class="toggle-sub" onclick="">&#9658;</label>
+                      <input type="checkbox" name="nav" id="fof-portfolio-graphics-art" class="sub-nav-check"/>
+                      <ul id="fof-portfolio-graphics-art-sub" class="sub-nav">
+                        <li class="sub-heading">Artwork <label for="fof-portfolio-graphics-art" class="toggle" onclick="" title="Back">&#9658;</label></li>
+                        <li><a href="#">Chalks</a></li>
+                        <li><a href="#">Charcoal</a></li>
+                        <li><a href="#">Paintings</a> <label for="fof-portfolio-graphics-art-paintings" class="toggle-sub" onclick="">&#9658;</label>
+                          <input type="checkbox" name="nav" id="fof-portfolio-graphics-art-paintings" class="sub-nav-check"/>
+                          <ul id="fof-portfolio-graphics-art-paintings-sub" class="sub-nav">
+                            <li class="sub-heading">Paintings <label for="fof-portfolio-graphics-art-paintings" class="toggle" onclick="" title="Back">&#9658;</label></li>
+                            <li><a href="#">Acrylics</a></li>
+                            <li><a href="#">Oils</a></li>
+                            <li><a href="#">Watercolours</a></li>
+                          </ul>
+                        </li>
+                        <li><a href="#">Pastels</a></li>
+                        <li><a href="#">Pencils</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#">Graphics</a></li>
+                    <li><a href="#">Logos</a></li>
+                    <li><a href="#">Photography</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Script Development</a></li>
+                <li><a href="#">Website Design</a></li>
+              </ul>
+            </li>
+            <li class="go-up"><a href="#">Services</a> <label for="fof-services" class="toggle-sub" onclick="">&#9658;</label>
+              <input type="checkbox" name="nav" id="fof-services" class="sub-nav-check"/>
+              <ul id="fof-services-sub" class="sub-nav">
+                <li class="sub-heading">Services <label for="fof-services" class="toggle" onclick="" title="Back">&#9658;</label></li>
+                <li><a href="#">Content Management</a></li>
+                <li><a href="#">Graphic Design</a></li>
+                <li><a href="#">Script Development</a></li>
+                <li><a href="#">SEO</a> <label for="fof-services-seo" class="toggle-sub" onclick="">&#9658;</label>
+                  <input type="checkbox" name="nav" id="fof-services-seo" class="sub-nav-check"/>
+                  <ul id="fof-services-seo-sub" class="sub-nav">
+                    <li class="sub-heading">SEO <label for="fof-services-seo" class="toggle" onclick="" title="Back">&#9658;</label></li>
+                    <li><a href="#">In-Page Optimisation</a></li>
+                    <li><a href="#">Speed Optimisation</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Web Development</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="http://fast-edit.co.uk/">Fast Edit (flat file CMS)</a></li>
+        <li><a href="http://fast-apps.co.uk/">Fast Apps</a> <label for="fast-apps" class="toggle-sub" onclick="">&#9658;</label>
+          <input type="checkbox" name="nav" id="fast-apps" class="sub-nav-check"/>
+          <ul id="fast-apps-sub" class="sub-nav">
+            <li class="sub-heading">Fast Apps <label for="fast-apps" class="toggle" onclick="" title="Back">&#9658;</label></li>
+            <li><a href="#">Fast Logs</a></li>
+            <li><a href="#">Fast Feed</a></li>
+            <li><a href="#">Fast Warn</a></li>
+          </ul>
+        </li>
+        <li><a href="http://www.dynamicdrive.com/">Dynamic Drive</a></li>
+        <li><a href="http://www.jemcon.org/">JemCon.org</a></li>
+      </ul>
+      <label class="toggle close-all" onclick="uncheckboxes('nav')">&times;</label>
+    </div><!-- closing "#menu" -->
+      -->
+</nav>
+
+    <p>&copy; {{ site.time | date: '%Y' }}. All rights reserved.</p>
+  </div>
+</div>

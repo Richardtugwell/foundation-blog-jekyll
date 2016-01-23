@@ -1,0 +1,30 @@
+# Dependencies
+markdown:         redcarpet
+highlighter:      pygments
+
+# Permalinks
+permalink:        pretty
+relative_permalinks: true
+
+# Setup
+title:            East Riding Diary
+tagline:          'A Jekyll theme'
+description:      'Observations from the East Riding of Yorkshire'
+url:              http://eastridingdiary.co.uk
+baseurl:          /
+source:      ./src
+exclude: [assets]
+destination: ./dist
+keep_files: [assets]
+
+author:
+  name:           'Mark Otto'
+  url:            https://twitter.com/mdo
+
+paginate:         2
+
+# Custom vars
+version:          2.1.0
+
+github:
+  repo:           https://github.com/poole/hyde

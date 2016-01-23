@@ -1,0 +1,61 @@
+---
+layout: default
+title: Home
+---
+
+{% for post in paginator.posts %}
+<div class="blog-post">
+    <h3>
+        <a href="{{ post.url }}">
+            {{ post.title }}
+        </a>
+
+        <small>{{ post.date | date_to_string }}</small>
+    </h3>
+    <img class="thumbnail" src="http://placehold.it/850x350">
+    {{ post.content }}
+    <div class="callout">
+        <ul class="menu simple">
+            <li><a href="#">Author: Mike Mikers</a></li>
+            <li><a href="#">Comments: 3</a></li>
+        </ul>
+    </div>
+</div>
+{% endfor %}
+
+
+<div class="row column">
+    <ul class="pagination" role="navigation" aria-label="Pagination">
+        <li class="disabled">Previous</li>
+        <li class="current"><span class="show-for-sr">You're on page</span> 1</li>
+        <li><a href="#" aria-label="Page 2">2</a></li>
+        <li><a href="#" aria-label="Page 3">3</a></li>
+        <li><a href="#" aria-label="Page 4">4</a></li>
+        <li class="ellipsis"></li>
+        <li><a href="#" aria-label="Page 12">12</a></li>
+        <li><a href="#" aria-label="Page 13">13</a></li>
+        <li><a href="#" aria-label="Next page">Next</a></li>
+    </ul>
+</div>
+
+
+<div class="row column">
+    <ul class="pagination" role="navigation" aria-label="Pagination">
+        {% if paginator.next_page %}
+        <li>
+            <a href="{{ site.baseurl }}page{{paginator.next_page}}">Older</a>
+        </li>
+        {% else %}
+        <li class="disabled">Older</li>
+        {% endif %}
+        {% if paginator.previous_page %}
+        {% if paginator.page == 2 %}
+        <li><a href="{{ site.baseurl }}">Newer</a></li>
+        {% else %}
+        <li><a href="{{ site.baseurl }}page{{paginator.previous_page}}">Newer</a></li>
+        {% endif %}
+        {% else %}
+        <li class="disabled">Newer</li>
+        {% endif %}
+    </ul>
+</div>

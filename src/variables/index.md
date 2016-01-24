@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Home
-categories: jekyll
+categories: [cat1,cat2,cat3]
 ---
 
-<pre>{{site.categories | jsonify}}</pre>
+test

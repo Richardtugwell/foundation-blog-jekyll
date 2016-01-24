@@ -1,6 +1,8 @@
 # Dependencies
 markdown:         redcarpet
 highlighter:      pygments
+gems:
+  - jekyll-archives
 
 # Permalinks
 permalink:        none
@@ -16,6 +18,18 @@ source:           ./src
 exclude:          [assets]
 destination:      ./dist
 keep_files:       [assets]
+
+# Archives
+jekyll-archives:
+  enabled: [tags,categories]
+  layout: 'archive'
+  permalinks:
+    year: '/:year/'
+    month: '/:year/:month/'
+    day: '/:year/:month/:day/'
+    tag: '/tag/:name/'
+    category: '/category/:name/'
+
 
 author:
   name:           'Richard Tugwell'

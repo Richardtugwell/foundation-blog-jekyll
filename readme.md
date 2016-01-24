@@ -30,7 +30,7 @@ You'll need:
 Clone the repo:
 
 ```bash
-git clone https://github.com/zurb/foundation-zurb-template projectname
+git clone https://github.com/Richardtugwell/foundation-blog-jekyll.git projectname
 ```
 
 Open the folder in your command line, and install the needed dependencies:

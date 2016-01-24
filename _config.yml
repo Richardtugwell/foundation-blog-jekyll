@@ -7,24 +7,23 @@ permalink:        pretty
 relative_permalinks: true
 
 # Setup
-title:            East Riding Diary
-tagline:          'A Jekyll theme'
+title:            Jekyll / Foundation 6
+tagline:          'A Jekyll starter project'
 description:      'Observations from the East Riding of Yorkshire'
-url:              http://eastridingdiary.co.uk
+url:              http://localhost
 baseurl:          /
-source:      ./src
-exclude: [assets]
-destination: ./dist
-keep_files: [assets]
+source:           ./src
+exclude:          [assets]
+destination:      ./dist
+keep_files:       [assets]
 
 author:
-  name:           'Mark Otto'
-  url:            https://twitter.com/mdo
+  name:           'Richard Tugwell'
 
-paginate:         2
+paginate:         5
 
 # Custom vars
-version:          2.1.0
+version:          1.0.0
 
 github:
-  repo:           https://github.com/poole/hyde
+  repo:           https://github.com/Richardtugwell/foundation-blog-jekyll

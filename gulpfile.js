@@ -2,6 +2,7 @@ var $       = require('gulp-load-plugins')();
 var argv    = require('yargs').argv;
 var browser = require('browser-sync');
 var gulp    = require('gulp');
+var exec    = require('child_process').exec;
 var del     = require('del');
 var sequence = require('run-sequence');
 var sherpa  = require('style-sherpa');
@@ -63,6 +64,14 @@ gulp.task('clean', function (done) {
         // here we use a globbing pattern to match everything inside the `mobile` folder
         'dist/styleguide.html'
     ]);
+});
+
+// Run Jekyll build
+gulp.task('jekyll', function (done) {
+    exec('jekyll build', function () {
+        browser.reload();
+        done();
+    })
 });
 
 // Copy files out of the assets folder
@@ -154,10 +163,11 @@ gulp.task('server', ['build'], function () {
 });
 
 // Build the site, run the server, and watch for file changes
-gulp.task('default', ['build', 'server'], function () {
+gulp.task('default', ['build', 'jekyll', 'server'], function () {
     gulp.watch(PATHS.assets, ['copy']);
     gulp.watch(['src/assets/scss/**/{*.scss, *.sass}'], ['sass']);
     gulp.watch(['src/assets/js/**/*.js'], ['javascript']);
     gulp.watch(['src/assets/img/**/*'], ['images']);
     gulp.watch(['src/styleguide/**'], ['styleguide']);
+    gulp.watch(['src/_*/*'], ['jekyll']);
 });

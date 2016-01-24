@@ -60,9 +60,7 @@ var PATHS = {
 // This happens every time a build starts
 gulp.task('clean', function (done) {
     return del([
-        'dist/assets',
-        // here we use a globbing pattern to match everything inside the `mobile` folder
-        'dist/styleguide.html'
+        'dist/assets'
     ]);
 });
 
@@ -79,16 +77,6 @@ gulp.task('jekyll', function (done) {
 gulp.task('copy', function () {
     return gulp.src(PATHS.assets)
         .pipe(gulp.dest('dist/assets'));
-});
-
-gulp.task('styleguide', function (done) {
-    sherpa('src/styleguide/index.md', {
-        output: 'dist/styleguide.html',
-        template: 'src/styleguide/template.html'
-    }, function () {
-        browser.reload;
-        done();
-    });
 });
 
 // Compile Sass into CSS
@@ -152,7 +140,7 @@ gulp.task('images', function () {
 
 // Build the "dist" folder by running all of the above tasks
 gulp.task('build', function (done) {
-    sequence('clean', ['sass', 'javascript', 'images', 'copy'], 'styleguide', done);
+    sequence('clean', ['sass', 'javascript', 'images', 'copy'], done);
 });
 
 // Start a server with LiveReload to preview the site in
@@ -168,6 +156,5 @@ gulp.task('default', ['build', 'jekyll', 'server'], function () {
     gulp.watch(['src/assets/scss/**/{*.scss, *.sass}'], ['sass']);
     gulp.watch(['src/assets/js/**/*.js'], ['javascript']);
     gulp.watch(['src/assets/img/**/*'], ['images']);
-    gulp.watch(['src/styleguide/**'], ['styleguide']);
     gulp.watch(['src/_*/*'], ['jekyll']);
 });

@@ -3,14 +3,15 @@ markdown:         redcarpet
 highlighter:      pygments
 gems:
   - jekyll-archives
+  - redcarpet
+  - jekyll-paginate
 
 # Permalinks
 permalink:        none
-relative_permalinks: true
 
 # Setup
-title:            Jekyll / Foundation 6
-tagline:          'A Jekyll starter project'
+title:            The Blog
+tagline:          'A Jekyll / Foundation 6 starter project'
 description:      'Observations from the East Riding of Yorkshire'
 url:              http://localhost
 baseurl:          /

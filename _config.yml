@@ -22,7 +22,7 @@ keep_files:       [assets]
 
 # Archives
 jekyll-archives:
-  enabled: [tags,categories]
+  enabled: [tags,categories,year,month]
   layout: 'archive'
   permalinks:
     year: '/:year/'

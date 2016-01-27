@@ -14,3 +14,11 @@
     {% endfor %}
 </ul>
 {% endif %}
+{% if site.dates.size > 0 %}
+<h4>Archive</h4>
+<ul>
+    {% for year in site.years %}
+    <li><a href="/{{ year | first }}">{{ year | first }}</a> ( {{ year | last | size }} )</li>
+    {% endfor %}
+</ul>
+{% endif %}

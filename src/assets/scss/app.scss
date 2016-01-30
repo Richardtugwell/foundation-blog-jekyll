@@ -43,3 +43,7 @@
 
 @include motion-ui-transitions;
 @include motion-ui-animations;
+
+.menu {
+  @include disable-mouse-outline;
+}

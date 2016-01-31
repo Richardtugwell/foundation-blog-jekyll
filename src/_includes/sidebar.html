@@ -1,25 +1,17 @@
 {% if site.categories.size > 0 %}
-<ul class="vertical menu" data-accordion-menu>
-    <li>
-        <a href="#">Categories</a>
-        <ul class="menu vertical nested">
-            {% for category in site.categories %}
-            <li><a href="/category/{{ category | first }}">{{ category | first }}( {{ category | last | size }} )</a></li>
-            {% endfor %}
-        </ul>
-    </li>
-</ul>
+    <h4>Categories</h4>
+    <ul>
+        {% for category in site.categories %}
+        <li><a href="/category/{{ category | first }}">{{ category | first }}</a> ( {{ category | last | size }} )</li>
+        {% endfor %}
+    </ul>
 {% endif %}
 {% if site.tags.size > 0 %}
-<ul class="vertical menu" data-accordion-menu>
-    <li>
-        <a href="#">Tags</a>
-        <ul class="menu vertical nested">
+    <h4>Tags</h4>
+    <ul>
         {% for tag in site.tags %}
-            <li><a href="/tag/{{ tag | first }}">{{ tag | first }}( {{ tag | last | size }} )</a></li>
+        <li><a href="/tag/{{ tag | first }}">{{ tag | first }}</a> ( {{ tag | last | size }} )</li>
         {% endfor %}
-        </ul>
-    </li>
-</ul>
+    </ul>
 {% endif %}
 

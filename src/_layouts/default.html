@@ -8,7 +8,7 @@
     <div class="top-bar-left">
         <ul class="menu">
             <li>
-                <a href="/">{{site.title}}</a>
+                <a href="/">Home</a>
             </li>
         </ul>
     </div>
@@ -19,22 +19,24 @@
         </ul>
     </div>
 </div>
-<div class="hero">
+
+<section class="hero">
     <div class="row column text-center">
         <h1>{{site.tagline}}</h1>
     </div>
-</div>
+</section>
 
-<div class="row" id="content">
+<section class="row" id="content">
     <div class="medium-8 columns">
         {{content}}
     </div>
     <div class="medium-3 columns" data-sticky-container>
-        <div class="sticky" data-sticky data-anchor="content" style="width:100%;">
+        <div class="sticky" data-sticky data-anchor="content">
             {% include sidebar.html %}
         </div>
     </div>
-</div>
+</section>
+
 <script src="/assets/js/app.js"></script>
 </body>
 </html>

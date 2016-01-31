@@ -10,9 +10,9 @@ gems:
 permalink:        none
 
 # Setup
-title:            The Blog
-tagline:          'A Jekyll / Foundation 6 starter project'
-description:      'Observations from the East Riding of Yorkshire'
+title:            A Jekyll / Foundation 6 blog template
+tagline:          A Jekyll / Foundation 6 blog template
+description:      A barebones blog template
 url:              http://localhost
 baseurl:          /
 source:           ./src

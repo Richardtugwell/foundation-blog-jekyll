@@ -4,7 +4,6 @@
 @import 'foundation';
 @import 'motion-ui';
 
-
 @include foundation-global-styles;
 @include foundation-grid;
 @include foundation-typography;
@@ -44,6 +43,17 @@
 @include motion-ui-transitions;
 @include motion-ui-animations;
 
-.menu {
-  @include disable-mouse-outline;
+@mixin intrinsic-ratio-bg-img($img-url) {
+    background-image: url('/assets/img/' + $img-url);
+    background-size: contain; // note: could also use ‘cover’ but it is less supported.
+    background-repeat: no-repeat;
+    padding-top: percentage($custom-banner-image-height/$custom-banner-image-width);
+    margin-bottom: 1rem;
+}
+
+.hero {
+    @include intrinsic-ratio-bg-img('20160125114729.jpg');
+    .row {
+        margin-top: percentage(-$custom-banner-image-height/$custom-banner-image-width);
+    }
 }

@@ -15,7 +15,7 @@
 @import 'forms/forms';
 //@import 'components/visibility';
 //@import 'components/float';
-//@import 'components/button';
+@import 'components/button';
 //@import 'components/button-group';
 //@import 'components/accordion-menu';
 //@import 'components/accordion';
@@ -29,10 +29,10 @@
 //@import 'components/flex-video';
 //@import 'components/label';
 //@import 'components/media-object';
-//@import 'components/menu';
+@import 'components/menu';
 //@import 'components/off-canvas';
 //@import 'components/orbit';
-//@import 'components/pagination';
+@import 'components/pagination';
 //@import 'components/progress-bar';
 //@import 'components/reveal';
 //@import 'components/slider';
@@ -41,7 +41,7 @@
 //@import 'components/table';
 //@import 'components/tabs';
 //@import 'components/title-bar';
-//@import 'components/top-bar';
+@import 'components/top-bar';
 //@import 'components/thumbnail';
 //@import 'components/tooltip';
 
@@ -49,7 +49,7 @@
 @include foundation-grid;
 @include foundation-typography;
 
-//@include foundation-button;
+@include foundation-button;
 //@include foundation-forms;
 //@include foundation-visibility-classes;
 //@include foundation-float-classes;
@@ -66,10 +66,10 @@
 //@include foundation-flex-video;
 //@include foundation-label;
 //@include foundation-media-object;
-//@include foundation-menu;
+@include foundation-menu;
 //@include foundation-off-canvas;
 //@include foundation-orbit;
-//@include foundation-pagination;
+@include foundation-pagination;
 //@include foundation-progress-bar;
 //@include foundation-slider;
 //@include foundation-sticky;
@@ -80,7 +80,7 @@
 //@include foundation-thumbnail;
 //@include foundation-title-bar;
 //@include foundation-tooltip;
-//@include foundation-top-bar;
+@include foundation-top-bar;
 //
 //@include motion-ui-transitions;
 //@include motion-ui-animations;

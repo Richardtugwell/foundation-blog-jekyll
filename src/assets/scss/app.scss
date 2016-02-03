@@ -13,7 +13,7 @@
 @import 'grid/grid';
 @import 'typography/typography';
 @import 'forms/forms';
-//@import 'components/visibility';
+@import 'components/visibility';
 //@import 'components/float';
 @import 'components/button';
 //@import 'components/button-group';
@@ -21,7 +21,7 @@
 //@import 'components/accordion';
 //@import 'components/badge';
 //@import 'components/breadcrumbs';
-//@import 'components/callout';
+@import 'components/callout';
 //@import 'components/close-button';
 //@import 'components/drilldown';
 //@import 'components/dropdown-menu';
@@ -51,14 +51,14 @@
 
 @include foundation-button;
 //@include foundation-forms;
-//@include foundation-visibility-classes;
+@include foundation-visibility-classes;
 //@include foundation-float-classes;
 //@include foundation-accordion;
 //@include foundation-accordion-menu;
 //@include foundation-badge;
 //@include foundation-breadcrumbs;
 //@include foundation-button-group;
-//@include foundation-callout;
+@include foundation-callout;
 //@include foundation-close-button;
 //@include foundation-drilldown-menu;
 //@include foundation-dropdown;

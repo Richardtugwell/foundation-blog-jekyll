@@ -11,8 +11,8 @@ It is based on the Foundation Zurb Template https://github.com/zurb/foundation-z
   - CSS compression
   - JavaScript compression
   - Image compression
-  
-(Panini page compilation has been removed as we're using Jekyll)
+
+(Panini page compilation has been removed as we're using Jekyll instead)
 
 If you are only interested in the Foundation Sass components, it might be simpler just to use native Jekyll support for Sass
 
@@ -23,7 +23,7 @@ It uses a basic Foundation HTML blog template found here http://foundation.zurb.
 You'll need:
 
 - [NodeJS](https://nodejs.org/en/) (0.12 or greater)
-- [Jekyll](http://jekyllrb.com/) 
+- [Jekyll](http://jekyllrb.com/)
 
 ## Installation
 

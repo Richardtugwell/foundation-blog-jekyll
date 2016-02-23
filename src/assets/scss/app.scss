@@ -36,7 +36,7 @@
 //@import 'components/progress-bar';
 //@import 'components/reveal';
 //@import 'components/slider';
-//@import 'components/sticky';
+@import 'components/sticky';
 //@import 'components/switch';
 //@import 'components/table';
 //@import 'components/tabs';
@@ -72,7 +72,7 @@
 @include foundation-pagination;
 //@include foundation-progress-bar;
 //@include foundation-slider;
-//@include foundation-sticky;
+@include foundation-sticky;
 //@include foundation-reveal;
 //@include foundation-switch;
 //@include foundation-table;

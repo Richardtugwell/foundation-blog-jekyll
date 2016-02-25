@@ -140,18 +140,23 @@ gulp.task('images', function () {
 
 // Build the "dist" folder by running all of the above tasks
 gulp.task('build', function (done) {
-    sequence('clean', ['sass', 'javascript', 'images', 'copy'], done);
+    sequence('clean', ['sass', 'javascript', 'images', 'copy', 'jekyll'], done);
 });
 
-// Start a server with LiveReload to preview the site in
-gulp.task('server', ['build'], function () {
-    browser.init({
-        server: 'dist', port: PORT
-    });
+// Starts a test server, which you can view at http://localhost:8079
+gulp.task('server', ['build'], function() {
+  gulp.src('./dist')
+    .pipe($.webserver({
+      port: 8079,
+      host: 'localhost',
+      fallback: 'index.html',
+      livereload: true,
+      open: true
+    }))
+  ;
 });
-
 // Build the site, run the server, and watch for file changes
-gulp.task('default', ['build', 'jekyll', 'server'], function () {
+gulp.task('default', ['server'], function () {
     gulp.watch(PATHS.assets, ['copy']);
     gulp.watch(['src/assets/scss/**/{*.scss, *.sass}'], ['sass']);
     gulp.watch(['src/assets/js/**/*.js'], ['javascript']);

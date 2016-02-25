@@ -10,7 +10,6 @@
   "author": "ZURB <foundation@zurb.com>",
   "license": "MIT",
   "devDependencies": {
-    "browser-sync": "^2.10.0",
     "del": "^2.2.0",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
@@ -24,6 +23,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.2.0",
     "gulp-uncss": "^1.0.1",
+    "gulp-webserver": "^0.9.1",
     "run-sequence": "^1.1.0",
     "style-sherpa": "^1.0.0",
     "yargs": "^3.8.0"

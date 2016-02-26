@@ -73,15 +73,11 @@ wrench.readdirSyncRecursive('./gulp/tasks').filter(function(file) {
 // Build the "dist" folder by running all of the above tasks
 gulp.task('build', ['sass', 'javascript', 'images', 'copy', 'jekyll'] );
 
-// Starts a test server, which you can view at http://localhost:8079
-gulp.task('server', ['build'], function() {
-  gulp.src('./dist')
-    .pipe($.webserver({
-      port: 8079,
-      host: 'localhost',
-      fallback: 'index.html',
-      livereload: true,
-      open: true
-    }))
-  ;
-});
+gulp.task('default',  function () {
+    sequence('clean', 'build', 'server');
+    gulp.watch(config.SOURCE.assets, ['copy']);
+    gulp.watch(['src/assets/scss/**/{*.scss, *.sass}'], ['sass']);
+    gulp.watch(['src/assets/js/**/*.js'], ['javascript']);
+    gulp.watch(['src/assets/img/**/*'], ['images']);
+    gulp.watch(['src/_*/*'], ['jekyll']);
+})

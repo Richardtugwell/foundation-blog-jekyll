@@ -51,6 +51,22 @@ var SOURCE = {
     ]
 };
 
+// File paths to WATCH.
+var WATCH = {
+    sass: [
+        'src/assets/scss/**/{*.scss, *.sass}'
+    ],
+    javascript: [
+        'src/assets/js/**/*.js'
+    ],
+    images: [
+        'src/assets/img/**/*'
+    ],
+    jekyll: [
+        'src/_*/*'
+    ]
+}
+
 // File paths to various targets.
 var TARGET = {
     assets: 'dist/assets',
@@ -60,6 +76,7 @@ var TARGET = {
 var config = {
     isProduction: isProduction,
     COMPATIBILITY: COMPATIBILITY,
+    WATCH: WATCH,
     SOURCE: SOURCE,
     TARGET: TARGET
 };
@@ -76,8 +93,8 @@ gulp.task('build', ['sass', 'javascript', 'images', 'copy', 'jekyll'] );
 gulp.task('default',  function () {
     sequence('clean', 'build', 'server');
     gulp.watch(config.SOURCE.assets, ['copy']);
-    gulp.watch(['src/assets/scss/**/{*.scss, *.sass}'], ['sass']);
-    gulp.watch(['src/assets/js/**/*.js'], ['javascript']);
-    gulp.watch(['src/assets/img/**/*'], ['images']);
-    gulp.watch(['src/_*/*'], ['jekyll']);
+    gulp.watch(config.WATCH.sass, ['sass']);
+    gulp.watch(config.WATCH.javascript, ['javascript']);
+    gulp.watch(config.WATCH.images, ['images']);
+    gulp.watch(config.WATCH.jekyll, ['jekyll']);
 })

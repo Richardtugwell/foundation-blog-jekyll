@@ -2,8 +2,6 @@ var wrench  = require('wrench');
 var $           = require('gulp-load-plugins')();
 var argv        = require('yargs').argv;
 var gulp        = require('gulp');
-var exec        = require('child_process').exec;
-var del         = require('del');
 var sequence    = require('run-sequence');
 
 // Check for --production flag
@@ -13,11 +11,12 @@ var isProduction = !!(argv.production);
 var COMPATIBILITY = ['last 2 versions', 'ie >= 9'];
 
 // File paths to various assets are defined here.
-var PATHS = {
+var SOURCE = {
     assets: [
         'src/assets/**/*',
         '!src/assets/{img,js,scss}/**/*'
     ],
+    scssApp: 'src/assets/scss/app.scss',
     sass: [
         'bower_components/foundation-sites/scss',
         'bower_components/motion-ui/src/'
@@ -52,8 +51,17 @@ var PATHS = {
     ]
 };
 
+// File paths to various targets.
+var TARGET = {
+    assets: 'dist/assets',
+}
+
+// Config - gets passed to all tasks.
 var config = {
-    PATHS: PATHS
+    isProduction: isProduction,
+    COMPATIBILITY: COMPATIBILITY,
+    SOURCE: SOURCE,
+    TARGET: TARGET
 };
 
 wrench.readdirSyncRecursive('./gulp/tasks').filter(function(file) {
@@ -62,88 +70,8 @@ wrench.readdirSyncRecursive('./gulp/tasks').filter(function(file) {
   require('./gulp/tasks/' + file)(config);
 });
 
-// Delete the "dist" folder
-// This happens every time a build starts
-gulp.task('clean', function (done) {
-    return del(
-        PATHS.assets
-    );
-});
-
-// Run Jekyll build
-gulp.task('jekyll', function (done) {
-    exec('jekyll build', function () {
-        done();
-    })
-});
-
-// Copy files out of the assets folder
-// This task skips over the "img", "js", and "scss" folders, which are parsed separately
-gulp.task('copy', function () {
-    return gulp.src(PATHS.assets)
-        .pipe(gulp.dest('dist/assets'));
-});
-
-// Compile Sass into CSS
-// In production, the CSS is compressed
-gulp.task('sass', function () {
-    var uncss = $.if(isProduction, $.uncss({
-        html: ['src/**/*.html'],
-        ignore: [
-            new RegExp('.foundation-mq'),
-            new RegExp('^\.is-.*')
-        ]
-    }));
-
-    var minifycss = $.if(isProduction, $.minifyCss());
-
-    return gulp.src('src/assets/scss/app.scss')
-        .pipe($.sourcemaps.init())
-        .pipe($.sass({
-                includePaths: PATHS.sass
-            })
-            .on('error', $.sass.logError))
-        .pipe($.autoprefixer({
-            browsers: COMPATIBILITY
-        }))
-        .pipe(uncss)
-        .pipe(minifycss)
-        .pipe($.if(!isProduction, $.sourcemaps.write()))
-        .pipe(gulp.dest('dist/assets/css'))
-});
-
-// Combine JavaScript into one file
-// In production, the file is minified
-gulp.task('javascript', function () {
-    var uglify = $.if(isProduction, $.uglify()
-        .on('error', function (e) {
-            console.log(e);
-        }));
-
-    return gulp.src(PATHS.javascript)
-        .pipe($.sourcemaps.init())
-        .pipe($.concat('app.js'))
-        .pipe(uglify)
-        .pipe($.if(!isProduction, $.sourcemaps.write()))
-        .pipe(gulp.dest('dist/assets/js'))
-});
-
-// Copy images to the "dist" folder
-// In production, the images are compressed
-gulp.task('images', function () {
-    var imagemin = $.if(isProduction, $.imagemin({
-        progressive: true
-    }));
-
-    return gulp.src('src/assets/img/**/*')
-        .pipe(imagemin)
-        .pipe(gulp.dest('dist/assets/img'))
-});
-
 // Build the "dist" folder by running all of the above tasks
-gulp.task('build', function (done) {
-    sequence('clean', ['sass', 'javascript', 'images', 'copy', 'jekyll'], done);
-});
+gulp.task('build', ['sass', 'javascript', 'images', 'copy', 'jekyll'] );
 
 // Starts a test server, which you can view at http://localhost:8079
 gulp.task('server', ['build'], function() {

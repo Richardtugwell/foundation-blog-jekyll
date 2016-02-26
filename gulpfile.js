@@ -1,17 +1,13 @@
-var $       = require('gulp-load-plugins')();
-var argv    = require('yargs').argv;
-var browser = require('browser-sync');
-var gulp    = require('gulp');
-var exec    = require('child_process').exec;
-var del     = require('del');
-var sequence = require('run-sequence');
-var sherpa  = require('style-sherpa');
+var wrench  = require('wrench');
+var $           = require('gulp-load-plugins')();
+var argv        = require('yargs').argv;
+var gulp        = require('gulp');
+var exec        = require('child_process').exec;
+var del         = require('del');
+var sequence    = require('run-sequence');
 
 // Check for --production flag
 var isProduction = !!(argv.production);
-
-// Port to use for the development server.
-var PORT = 8000;
 
 // Browsers to target when prefixing CSS.
 var COMPATIBILITY = ['last 2 versions', 'ie >= 9'];
@@ -56,18 +52,27 @@ var PATHS = {
     ]
 };
 
+var config = {
+    PATHS: PATHS
+};
+
+wrench.readdirSyncRecursive('./gulp/tasks').filter(function(file) {
+  return (/\.(js|coffee)$/i).test(file);
+}).map(function(file) {
+  require('./gulp/tasks/' + file)(config);
+});
+
 // Delete the "dist" folder
 // This happens every time a build starts
 gulp.task('clean', function (done) {
-    return del([
-        'dist/assets'
-    ]);
+    return del(
+        PATHS.assets
+    );
 });
 
 // Run Jekyll build
 gulp.task('jekyll', function (done) {
     exec('jekyll build', function () {
-        browser.reload();
         done();
     })
 });
@@ -105,7 +110,6 @@ gulp.task('sass', function () {
         .pipe(minifycss)
         .pipe($.if(!isProduction, $.sourcemaps.write()))
         .pipe(gulp.dest('dist/assets/css'))
-        .pipe(browser.reload({stream: true}));
 });
 
 // Combine JavaScript into one file
@@ -122,7 +126,6 @@ gulp.task('javascript', function () {
         .pipe(uglify)
         .pipe($.if(!isProduction, $.sourcemaps.write()))
         .pipe(gulp.dest('dist/assets/js'))
-        .on('finish', browser.reload);
 });
 
 // Copy images to the "dist" folder
@@ -135,7 +138,6 @@ gulp.task('images', function () {
     return gulp.src('src/assets/img/**/*')
         .pipe(imagemin)
         .pipe(gulp.dest('dist/assets/img'))
-        .on('finish', browser.reload);
 });
 
 // Build the "dist" folder by running all of the above tasks
@@ -154,12 +156,4 @@ gulp.task('server', ['build'], function() {
       open: true
     }))
   ;
-});
-// Build the site, run the server, and watch for file changes
-gulp.task('default', ['server'], function () {
-    gulp.watch(PATHS.assets, ['copy']);
-    gulp.watch(['src/assets/scss/**/{*.scss, *.sass}'], ['sass']);
-    gulp.watch(['src/assets/js/**/*.js'], ['javascript']);
-    gulp.watch(['src/assets/img/**/*'], ['images']);
-    gulp.watch(['src/_*/*'], ['jekyll']);
 });

@@ -79,6 +79,7 @@ module.exports = {
     isProduction: isProduction,
     PORT: 8079,
     SERVERROOT: './dist',
+    TASKDIR: './gulp/tasks/',
     COMPATIBILITY: COMPATIBILITY,
     WATCH: WATCH,
     SOURCE: SOURCE,

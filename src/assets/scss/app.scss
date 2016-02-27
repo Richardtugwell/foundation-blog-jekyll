@@ -92,7 +92,6 @@
     padding-top: percentage($custom-banner-image-height/$custom-banner-image-width);
     margin-bottom: 1rem;
 }
-
 .hero {
     @include intrinsic-ratio-bg-img('20160125114729.jpg');
     .row {

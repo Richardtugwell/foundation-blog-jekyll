@@ -75,6 +75,8 @@ var TARGET = {
 // Config - gets passed to all tasks.
 var config = {
     isProduction: isProduction,
+    PORT: 8079,
+    SERVERROOT: './dist',
     COMPATIBILITY: COMPATIBILITY,
     WATCH: WATCH,
     SOURCE: SOURCE,

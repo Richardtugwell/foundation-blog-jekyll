@@ -64,7 +64,8 @@ var WATCH = {
         'src/assets/img/**/*'
     ],
     jekyll: [
-        'src/_*/*'
+        'src/_*/*',
+        '_config.yml'
     ]
 }
 
